@@ -27,7 +27,6 @@
   }
 }
  
-/* Keyframe de flutuação das runas decorativas místicas */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
@@ -55,12 +54,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 237, 0.4); /* Roxo com 40% de opacidade */
+  background: rgba(124, 58, 237, 0.4); 
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 58, 237, 0.8); /* Roxo com 80% de opacidade */
+  background: rgba(124, 58, 237, 0.8); 
 }
 
 * {
