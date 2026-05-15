@@ -140,7 +140,6 @@ export default function OraculoPage() {
         }
         .animate-slide-in { animation: slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        /* Nova Animação Surpresa do Oráculo */
         @keyframes surprisePop {
           0% { opacity: 0; transform: scale(0.3) translateY(50px); filter: brightness(0); }
           60% { opacity: 1; transform: scale(1.05) translateY(-10px); filter: brightness(1.5); }
