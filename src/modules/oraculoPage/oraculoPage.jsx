@@ -44,7 +44,6 @@ export default function OraculoPage() {
 
     const [visible, setVisible] = useState(false);
 
-    // Estados: preparando -> transicao (blecaute) -> invocando -> revelado
     const [statusRitual, setStatusRitual] = useState("preparando");
     const [textoEmbaralhado, setTextoEmbaralhado] = useState("");
     const [opcaoEscolhida, setOpcaoEscolhida] = useState("");
@@ -87,10 +86,8 @@ export default function OraculoPage() {
     const iniciarRitual = () => {
         if (opcoes.length < 2) return;
 
-        // 1. Inicia o Blecaute (some tudo)
         setStatusRitual("transicao");
 
-        // 2. Espera a tela ficar vazia (1 segundo) e explode a surpresa no centro
         setTimeout(() => {
             setStatusRitual("invocando");
 
@@ -300,7 +297,6 @@ export default function OraculoPage() {
                 {(statusRitual === "invocando" || statusRitual === "revelado") && (
                     <div className="flex flex-col items-center justify-center w-full animate-surprise relative">
                         <div className="relative mb-12 sm:mb-16 mt-6 sm:mt-10 flex flex-col items-center">
-                            {/* Anéis Mágicos Imponentes - Reduzidos no mobile para evitar barra de rolagem horizontal */}
                             {statusRitual === "invocando" && (
                                 <>
                                     <div className="absolute -inset-4 sm:-inset-16 border border-cyan-500/20 rounded-full animate-spin-slow border-t-cyan-400/60 border-b-transparent" />
@@ -316,18 +312,15 @@ export default function OraculoPage() {
                             />
 
                             <div className="relative animate-float-slow">
-                                {/* Bola de cristal reduzida no mobile de w-80 para w-64 */}
                                 <div
                                     className={`w-64 h-64 sm:w-96 sm:h-96 rounded-full flex flex-col items-center justify-center relative transition-all duration-1000 overflow-hidden ${statusRitual === "invocando"
                                         ? "bg-[radial-gradient(circle_at_30%_30%,#3b0764,#020617)] shadow-[inset_0_0_50px_rgba(139,92,246,0.3),0_0_30px_rgba(124,58,237,0.5)] sm:shadow-[inset_0_0_80px_rgba(139,92,246,0.3),0_0_50px_rgba(124,58,237,0.5)] border border-violet-400/50"
                                         : "bg-[radial-gradient(circle_at_30%_30%,#451a03,#020617)] shadow-[inset_0_0_60px_rgba(251,191,36,0.4),0_0_40px_rgba(217,119,6,0.5)] sm:shadow-[inset_0_0_100px_rgba(251,191,36,0.4),0_0_60px_rgba(217,119,6,0.5)] border border-amber-400/60"
                                         }`}
                                 >
-                                    {/* Reflexos 3D */}
                                     <div className="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 w-4/5 h-20 sm:h-32 bg-gradient-to-b from-white/20 to-transparent rounded-[100%] filter blur-[1px]" />
                                     <div className="absolute bottom-4 sm:bottom-6 left-8 right-8 sm:left-12 sm:right-12 h-10 sm:h-16 bg-gradient-to-t from-white/10 to-transparent rounded-[100%] filter blur-[3px]" />
 
-                                    {/* TEXTO: ROLETANDO */}
                                     {statusRitual === "invocando" && (
                                         <div className="text-center px-6 sm:px-10 z-10 w-full">
                                             <p className="text-violet-300/80 font-mono text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.4em] uppercase mb-4 sm:mb-6 animate-pulse">
@@ -339,7 +332,6 @@ export default function OraculoPage() {
                                         </div>
                                     )}
 
-                                    {/* TEXTO: REVELAÇÃO FINAL */}
                                     {statusRitual === "revelado" && (
                                         <div className="text-center px-6 sm:px-8 z-10 w-full animate-slide-in">
                                             <span className="text-amber-500/90 text-[10px] sm:text-xs tracking-[0.3em] sm:tracking-[0.5em] uppercase block mb-4 sm:mb-6 font-bold">
@@ -366,7 +358,6 @@ export default function OraculoPage() {
                                 className="flex flex-col sm:flex-row gap-3 sm:gap-5 w-full max-w-lg px-4 justify-center animate-slide-in"
                                 style={{ animationDelay: "0.5s" }}
                             >
-                                {/* Ação Primária: Resortear */}
                                 <button
                                     onClick={recalcularDestino}
                                     className="relative overflow-hidden group/btn flex-1 py-4 px-6 rounded-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold text-xs uppercase tracking-widest transition-all hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] hover:-translate-y-1 active:translate-y-0"
@@ -377,7 +368,6 @@ export default function OraculoPage() {
                                     </span>
                                 </button>
 
-                                {/* Ação Secundária: Voltar */}
                                 <button
                                     onClick={reiniciarTudo}
                                     className="relative flex-1 py-4 px-6 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white font-semibold text-xs uppercase tracking-widest transition-all backdrop-blur-md hover:border-white/20 active:scale-95 flex items-center justify-center gap-2"
