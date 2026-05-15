@@ -22,6 +22,14 @@ Além da funcionalidade principal, o projeto também explora uma identidade visu
 
 ---
 
+## 🌐 Projeto Hospedado
+
+O santuário está de portas abertas. Você pode consultar o Oráculo de Decisão diretamente através do seu navegador e deixar que o destino guie as suas escolhas, sem precisar instalar nada no seu computador.
+
+🔗 **Acessar o Oráculo:** [Clique aqui para abrir o projeto](https://oraculo-decisao.netlify.app/)
+
+---
+
 ## 🎯 Objetivo
 
 O objetivo do projeto é desenvolver uma interface web criativa, intuitiva e responsiva, permitindo que o usuário interaja com o sistema de forma simples e agradável.
@@ -111,9 +119,7 @@ Nesta seção estão os caminhos reservados para os protótipos do projeto.
 
 Protótipo referente à tela inicial do sistema, onde o usuário tem o primeiro contato com a proposta do projeto.
 
-```md
 ![Protótipo - Página Principal](public/images/homePage.png)
-```
 
 ---
 
@@ -121,9 +127,7 @@ Protótipo referente à tela inicial do sistema, onde o usuário tem o primeiro 
 
 Protótipo referente à tela principal de interação, onde o usuário informa as opções e recebe a decisão sorteada pelo sistema.
 
-```md
 ![Protótipo - Página do Oráculo](public/images/oraculoPage.png)
-```
 
 ---
 
@@ -131,9 +135,7 @@ Protótipo referente à tela principal de interação, onde o usuário informa a
 
 Protótipo referente à página exibida quando o usuário acessa uma rota inexistente.
 
-```md
 ![Protótipo - Página Not Found](public/images/notFoundPage.png)
-```
 
 ---
 
