@@ -112,7 +112,7 @@ Nesta seção estão os caminhos reservados para os protótipos do projeto.
 Protótipo referente à tela inicial do sistema, onde o usuário tem o primeiro contato com a proposta do projeto.
 
 ```md
-![Protótipo - Página Principal](./prototipos/pagina-principal.png)
+![Protótipo - Página Principal](public/images/homePage.png)
 ```
 
 ---
@@ -122,7 +122,7 @@ Protótipo referente à tela inicial do sistema, onde o usuário tem o primeiro 
 Protótipo referente à tela principal de interação, onde o usuário informa as opções e recebe a decisão sorteada pelo sistema.
 
 ```md
-![Protótipo - Página do Oráculo](./prototipos/oraculo.png)
+![Protótipo - Página do Oráculo](public/images/oraculoPage.png)
 ```
 
 ---
@@ -132,7 +132,7 @@ Protótipo referente à tela principal de interação, onde o usuário informa a
 Protótipo referente à página exibida quando o usuário acessa uma rota inexistente.
 
 ```md
-![Protótipo - Página Not Found](./prototipos/not-found.png)
+![Protótipo - Página Not Found](public/images/notFoundPage.png)
 ```
 
 ---
