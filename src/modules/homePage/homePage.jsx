@@ -1,158 +1,105 @@
 import { useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
-const RUNES = ["☽", "✦", "⟁", "⬡", "◈", "⍟", "⎊", "⌬", "⋆", "❋"];
-
-function FloatingRune({ symbol, style }) {
-  return (
-    <span
-      className="absolute select-none pointer-events-none text-indigo-300/20 font-light animate-float"
-      style={style}
-    >
-      {symbol}
-    </span>
-  );
-}
-
-function Background({ runes }) {
-  return (
-    <>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,#3b1d8a33,transparent)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_80%_80%,#1e3a6e22,transparent)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_30%_at_20%_70%,#4c1d9522,transparent)]" />
-
-      <div
-        className="absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage: `linear-gradient(#a78bfa 1px, transparent 1px), linear-gradient(90deg, #a78bfa 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-      {runes.map((r) => (
-        <FloatingRune key={r.id} symbol={r.symbol} style={r.style} />
-      ))}
-    </>
-  );
-}
+import DecorativeBackground from "../../components/DecorativeBackground";
 
 export default function HomePage() {
   const navigate = useNavigate();
+
   const [visible, setVisible] = useState(false);
-  const [runes, setRunes] = useState([]);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 100);
-    const generated = Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      symbol: RUNES[i % RUNES.length],
-      style: {
-        left: `${Math.random() * 95}%`,
-        top: `${Math.random() * 95}%`,
-        fontSize: `${Math.random() * 2 + 0.8}rem`,
-        animationDuration: `${Math.random() * 8 + 6}s`,
-        animationDelay: `${Math.random() * 4}s`,
-        opacity: Math.random() * 0.35 + 0.08,
-      },
-    }));
-    setRunes(generated);
+
     return () => clearTimeout(t);
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#07060f] py-16 px-4">
+    <div className="relative min-h-screen flex flex-col items-center justify-between overflow-hidden bg-black text-white font-sans selection:bg-red-900 selection:text-white">
+      <DecorativeBackground />
+
       <style>{`
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
+
+        .letter-spacing-extreme { letter-spacing: 0.5em; }
+
+        .letter-spacing-ultra { letter-spacing: 0.8em; }
+
+       
+
+        @keyframes pulse-ring {
+
+          0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
+
+          70% { box-shadow: 0 0 0 40px rgba(255, 255, 255, 0); }
+
+          100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+
         }
-        .animate-float-slow { animation: float-slow 4s ease-in-out infinite; }
-        
-        @keyframes shimmer {
-          100% { transform: translateX(100%); }
-        }
-        .animate-shimmer { animation: shimmer 2s infinite; }
+
+        .animate-pulse-ring { animation: pulse-ring 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite; }
+
       `}</style>
 
-      <Background runes={runes} />
+      <header
+        className={`relative z-10 w-full p-8 text-center transition-all duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}
+      >
+        <p className="text-zinc-600 text-[10px] letter-spacing-ultra uppercase">
+          Sistema de Decisão
+        </p>
+      </header>
 
-      <div className="relative z-10 max-w-xl mx-auto text-center flex flex-col items-center">
+      <main className="relative z-10 flex flex-col items-center justify-center flex-1 w-full max-w-5xl px-4">
         <div
-          className={`flex justify-center mb-8 transition-all duration-1000 ${visible ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-75 -translate-y-8"}`}
+          className={`transition-all duration-1000 delay-300 ease-out flex flex-col items-center ${visible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
         >
-          <div
-            className="relative group cursor-pointer animate-float-slow"
+          <h1 className="text-5xl md:text-8xl font-light tracking-[0.3em] ml-[0.3em] uppercase text-white/90 mb-16">
+            Oráculo
+          </h1>
+
+          <button
             onClick={() => navigate("/oraculo")}
+            className="relative group flex items-center justify-center w-40 h-40 md:w-56 md:h-56 rounded-full bg-black border border-white/20 transition-all duration-700 hover:border-white hover:scale-105 animate-pulse-ring focus:outline-none"
           >
-            <div className="absolute inset-0 bg-violet-600 rounded-full blur-2xl opacity-40 group-hover:opacity-70 group-hover:scale-125 transition-all duration-500" />
+            <div className="absolute inset-0 rounded-full shadow-[inset_0_0_40px_rgba(255,255,255,0.2)] group-hover:shadow-[inset_0_0_80px_rgba(255,255,255,0.6)] transition-shadow duration-700" />
 
-            <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full border border-violet-400/30 flex items-center justify-center bg-[radial-gradient(circle_at_30%_30%,#5b21b6,#020617)] shadow-[inset_0_0_30px_rgba(167,139,250,0.3),0_0_40px_rgba(124,58,237,0.4)] transition-all duration-500 overflow-hidden group-hover:border-violet-300/60 group-hover:shadow-[inset_0_0_50px_rgba(167,139,250,0.5),0_0_60px_rgba(124,58,237,0.6)]">
-              <div className="absolute top-2 left-4 right-4 h-12 bg-gradient-to-b from-white/20 to-transparent rounded-[100%] filter blur-[1px]" />
-              <div className="absolute bottom-2 left-8 right-8 h-6 bg-gradient-to-t from-white/10 to-transparent rounded-[100%] filter blur-[2px]" />
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-zinc-800 via-white to-red-900 opacity-0 group-hover:opacity-30 blur-2xl transition-opacity duration-1000 -z-10" />
 
-              <span className="text-6xl drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
-                🔮
+            <div className="relative z-10 flex flex-col items-center text-white/50 group-hover:text-white transition-colors duration-500">
+              <i className="ri-eye-line text-4xl md:text-5xl mb-2 font-light"></i>
+
+              <span className="text-[9px] uppercase tracking-[0.4em] font-medium ml-[0.4em]">
+                Revelar
               </span>
             </div>
+          </button>
 
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-16 h-2 bg-violet-500/40 rounded-[100%] blur-[2px] animate-ping" />
-          </div>
-        </div>
-
-        <div
-          className={`transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-        >
-          <h1
-            className="text-5xl sm:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-violet-200 to-indigo-400 drop-shadow-[0_0_20px_rgba(167,139,250,0.3)] px-2 mb-2"
-            style={{ fontFamily: "'Cinzel Decorative', Georgia, serif" }}
-          >
-            Oráculo de Decisão
-          </h1>
-          <p className="text-violet-300/70 text-xs sm:text-sm tracking-[0.4em] uppercase mt-4 font-medium">
-            Deixe o destino guiar suas escolhas
+          <p className="mt-16 max-w-md text-center text-zinc-500 text-xs md:text-sm leading-relaxed letter-spacing-extreme uppercase font-light">
+            A incerteza é uma ilusão. <br />
+            <span className="text-zinc-300">Inicie a convergência.</span>
           </p>
-          <div className="h-[2px] w-32 mx-auto mt-6 bg-gradient-to-r from-transparent via-violet-400/60 to-transparent rounded-full" />
         </div>
+      </main>
 
-        <div
-          className={`mt-10 mb-10 transition-all duration-1000 delay-500 w-full ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-        >
-          <div className="relative rounded-[2.5rem] border border-white/5 bg-white/[0.02] backdrop-blur-2xl p-8 sm:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] hover:bg-white/[0.03] transition-colors duration-500 group">
-            <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-violet-500/10 via-transparent to-cyan-500/5 blur-md -z-10 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+      <footer
+        className={`relative z-10 w-full p-8 text-center transition-all duration-1000 delay-700 ${visible ? "opacity-100" : "opacity-0"}`}
+      >
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-[1px] w-12 bg-zinc-800" />
 
-            <p className="text-slate-300/90 text-sm sm:text-base leading-relaxed mb-10 font-light">
-              Diante da névoa da incerteza, as runas estão prontas para
-              revelar o caminho. Seja para escolher o banquete da noite ou o
-              rumo de uma grande jornada,
-              <span className="text-violet-300 font-medium">
-                {" "}
-                deposite suas dúvidas no santuário{" "}
-              </span>
-              e ouça a resposta soberana.
-            </p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-zinc-400 text-xs tracking-widest uppercase font-medium">
+            <span>Patrick Perez Nicolini</span>
 
-            <button
-              onClick={() => navigate("/oraculo")}
-              className="relative overflow-hidden group/btn inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-violet-950/40 border border-violet-400/30 text-white text-sm font-bold uppercase tracking-widest transition-all duration-500 hover:shadow-[0_0_40px_rgba(124,58,237,0.5)] hover:-translate-y-1 hover:border-violet-300/60 active:translate-y-0"
-            >
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover/btn:animate-[shimmer_1.5s_infinite] skew-x-12" />
+            <span className="hidden md:inline text-red-900/50">|</span>
 
-              <span className="relative z-10 transition-transform duration-500 group-hover/btn:rotate-180 text-violet-300 text-lg">
-                ✦
-              </span>
-              <span className="relative z-10">Consultar o Destino</span>
-              <span className="relative z-10 transition-transform duration-500 group-hover/btn:translate-x-1 text-violet-300 text-lg">
-                ➔
-              </span>
-            </button>
+            <span>Carlos Gabriel de Oliveira Frazão</span>
           </div>
-        </div>
 
-        <p
-          className={`text-center text-slate-500/60 text-xs mt-4 tracking-wider transition-all duration-1000 delay-[800ms] ${visible ? "opacity-100" : "opacity-0"}`}
-        >
-          Interação Humano Computador · UFOP
-        </p>
-      </div>
+          <p className="text-zinc-700 text-[9px] tracking-[0.3em] uppercase mt-2">
+            Interação Humano Computador · UFOP
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
