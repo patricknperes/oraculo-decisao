@@ -1,3 +1,11 @@
+// Oráculo de Decisão
+
+// Disciplina: Interação Humano Computador
+//
+// Autores:
+// - Patrick Peres Nicolini (MATRÍCULA: 22.1.8103)
+// - Carlos Gabriel de Oliveira Frazão (MATRÍCULA: 22.1.8100)
+
 import { useEffect, useState } from "react";
 
 const DATA_SYMBOLS = ["+", "·", "::", "///", "—", "|", "■", "□"];

@@ -1,3 +1,11 @@
+// Oráculo de Decisão
+
+// Disciplina: Interação Humano Computador
+//
+// Autores:
+// - Patrick Peres Nicolini (MATRÍCULA: 22.1.8103)
+// - Carlos Gabriel de Oliveira Frazão (MATRÍCULA: 22.1.8100)
+
 import "remixicon/fonts/remixicon.css";
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";

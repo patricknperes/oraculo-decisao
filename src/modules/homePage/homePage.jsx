@@ -1,3 +1,11 @@
+// Oráculo de Decisão
+
+// Disciplina: Interação Humano Computador
+//
+// Autores:
+// - Patrick Peres Nicolini (MATRÍCULA: 22.1.8103)
+// - Carlos Gabriel de Oliveira Frazão (MATRÍCULA: 22.1.8100)
+
 import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -59,7 +67,7 @@ export default function HomePage() {
 
           <button
             onClick={() => navigate("/oraculo")}
-            className="relative group flex items-center justify-center w-40 h-40 md:w-56 md:h-56 rounded-full bg-black border border-white/20 transition-all duration-700 hover:border-white hover:scale-105 animate-pulse-ring focus:outline-none"
+            className="relative group flex cursor-pointer items-center justify-center w-40 h-40 md:w-56 md:h-56 rounded-full bg-black border border-white/20 transition-all duration-700 hover:border-white hover:scale-105 animate-pulse-ring focus:outline-none"
           >
             <div className="absolute inset-0 rounded-full shadow-[inset_0_0_40px_rgba(255,255,255,0.2)] group-hover:shadow-[inset_0_0_80px_rgba(255,255,255,0.6)] transition-shadow duration-700" />
 
