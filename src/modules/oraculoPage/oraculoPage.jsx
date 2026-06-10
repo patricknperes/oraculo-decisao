@@ -28,15 +28,33 @@ export default function OraculoPage() {
   const listaEndRef = useRef(null);
   const fileImgRef = useRef(null);
   const fileCsvRef = useRef(null);
+  const sacrificioTimeoutRef = useRef(null);
+  const restantesSacrificioRef = useRef([]);
+  const historicoEliminadosRef = useRef([]);
+  const velocidadeSacrificioRef = useRef(1);
+
+  const [velocidadeSacrificio, setVelocidadeSacrificio] = useState(1);
 
   const modoAtual = opcoes.length === 0 ? "livre" : opcoes[0].tipo;
   const estaNoModoSacrificio = modoRitual === "sacrificio";
   const estaNoModoImagem = modoAtual === "imagem";
-  const podeLimparCampos = inputOpcao.trim() || opcoes.length > 0;
+  const podeLimparCampos = opcoes.length > 0;
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    velocidadeSacrificioRef.current = velocidadeSacrificio;
+  }, [velocidadeSacrificio]);
+
+  useEffect(() => {
+    return () => {
+      if (sacrificioTimeoutRef.current) {
+        clearTimeout(sacrificioTimeoutRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -60,7 +78,20 @@ export default function OraculoPage() {
     }
   };
 
+  const limparTimerSacrificio = () => {
+    if (sacrificioTimeoutRef.current) {
+      clearTimeout(sacrificioTimeoutRef.current);
+      sacrificioTimeoutRef.current = null;
+    }
+  };
+
   const limparResultadoAnterior = () => {
+    limparTimerSacrificio();
+    restantesSacrificioRef.current = [];
+    historicoEliminadosRef.current = [];
+    velocidadeSacrificioRef.current = 1;
+
+    setVelocidadeSacrificio(1);
     setOpcaoEscolhida(null);
     setOpcaoEmbaralhada(null);
     setOpcaoEliminada(null);
@@ -172,35 +203,116 @@ export default function OraculoPage() {
     }, 5000);
   };
 
-  const executarSacrificio = () => {
-    let restantes = [...opcoes];
-    const historicoEliminados = [];
+  const finalizarSacrificio = () => {
+    limparTimerSacrificio();
 
+    setOpcaoEscolhida(restantesSacrificioRef.current[0]);
+    setOpcaoEliminada(null);
+    setSobreviventes([...restantesSacrificioRef.current]);
+    setEliminados([...historicoEliminadosRef.current]);
+    setVelocidadeSacrificio(1);
+    velocidadeSacrificioRef.current = 1;
+    setStatusRitual("revelado");
+  };
+
+  const executarPassoSacrificio = () => {
+    const restantes = restantesSacrificioRef.current;
+
+    if (restantes.length <= 1) {
+      finalizarSacrificio();
+      return;
+    }
+
+    const indiceEliminado = Math.floor(Math.random() * restantes.length);
+    const [eliminado] = restantes.splice(indiceEliminado, 1);
+
+    historicoEliminadosRef.current = [
+      ...historicoEliminadosRef.current,
+      eliminado,
+    ];
+
+    setOpcaoEliminada(eliminado);
+    setOpcaoEmbaralhada(
+      restantes[Math.floor(Math.random() * restantes.length)] || null
+    );
+    setEliminados([...historicoEliminadosRef.current]);
+    setSobreviventes([...restantes]);
+
+    if (restantes.length <= 1) {
+      sacrificioTimeoutRef.current = setTimeout(
+        finalizarSacrificio,
+        velocidadeSacrificioRef.current > 1 ? 260 : 700
+      );
+      return;
+    }
+
+    agendarProximoPassoSacrificio();
+  };
+
+  const agendarProximoPassoSacrificio = () => {
+    limparTimerSacrificio();
+
+    const delay = velocidadeSacrificioRef.current > 1 ? 180 : 1100;
+    sacrificioTimeoutRef.current = setTimeout(executarPassoSacrificio, delay);
+  };
+
+  const executarSacrificio = () => {
+    const restantes = [...opcoes];
+
+    limparTimerSacrificio();
+    restantesSacrificioRef.current = restantes;
+    historicoEliminadosRef.current = [];
+    velocidadeSacrificioRef.current = 1;
+
+    setVelocidadeSacrificio(1);
     setSobreviventes(restantes);
     setOpcaoEmbaralhada(restantes[0]);
+    setEliminados([]);
 
-    const sacrificioInterval = setInterval(() => {
-      if (restantes.length <= 1) {
-        clearInterval(sacrificioInterval);
+    agendarProximoPassoSacrificio();
+  };
 
-        setOpcaoEscolhida(restantes[0]);
-        setOpcaoEliminada(null);
-        setStatusRitual("revelado");
-        return;
-      }
+  const pularSacrificio = () => {
+    if (!estaNoModoSacrificio || statusRitual !== "invocando") return;
 
+    limparTimerSacrificio();
+
+    const restantes = [...restantesSacrificioRef.current];
+    const historicoCompleto = [...historicoEliminadosRef.current];
+
+    while (restantes.length > 1) {
       const indiceEliminado = Math.floor(Math.random() * restantes.length);
       const [eliminado] = restantes.splice(indiceEliminado, 1);
-      const sobreviventeAleatorio =
-        restantes[Math.floor(Math.random() * restantes.length)];
+      historicoCompleto.push(eliminado);
+    }
 
-      historicoEliminados.push(eliminado);
+    restantesSacrificioRef.current = restantes;
+    historicoEliminadosRef.current = historicoCompleto;
 
-      setOpcaoEliminada(eliminado);
-      setOpcaoEmbaralhada(sobreviventeAleatorio);
-      setEliminados([...historicoEliminados]);
-      setSobreviventes([...restantes]);
-    }, 1100);
+    setVelocidadeSacrificio(1);
+    velocidadeSacrificioRef.current = 1;
+    setOpcaoEliminada(null);
+    setOpcaoEmbaralhada(null);
+    setEliminados(historicoCompleto);
+    setSobreviventes(restantes);
+    setOpcaoEscolhida(restantes[0]);
+    setStatusRitual("revelado");
+  };
+
+  const iniciarAceleracaoSacrificio = () => {
+    if (!estaNoModoSacrificio || statusRitual !== "invocando") return;
+
+    velocidadeSacrificioRef.current = 4;
+    setVelocidadeSacrificio(4);
+
+    if (restantesSacrificioRef.current.length > 1) {
+      agendarProximoPassoSacrificio();
+    }
+  };
+
+  const pararAceleracaoSacrificio = () => {
+    velocidadeSacrificioRef.current = 1;
+    setVelocidadeSacrificio(1);
   };
 
   const executarRitual = () => {
@@ -234,16 +346,10 @@ export default function OraculoPage() {
     }, 600);
   };
 
-  const reiniciarTudo = () => {
+  const voltarParaLista = () => {
     setStatusRitual("transicao");
 
     setTimeout(() => {
-      setOpcoes((prev) => {
-        prev.forEach(liberarUrlImagem);
-        return [];
-      });
-
-      setInputOpcao("");
       limparResultadoAnterior();
       setStatusRitual("preparando");
     }, 600);
@@ -302,7 +408,11 @@ export default function OraculoPage() {
           sobreviventes={sobreviventes}
           getLabelOpcao={getLabelOpcao}
           recalcularDestino={recalcularDestino}
-          reiniciarTudo={reiniciarTudo}
+          reiniciarTudo={voltarParaLista}
+          pularSacrificio={pularSacrificio}
+          iniciarAceleracaoSacrificio={iniciarAceleracaoSacrificio}
+          pararAceleracaoSacrificio={pararAceleracaoSacrificio}
+          velocidadeSacrificio={velocidadeSacrificio}
         />
       </div>
     </div>

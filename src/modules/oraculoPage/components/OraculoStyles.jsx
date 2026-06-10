@@ -80,6 +80,15 @@ export default function OraculoStyles() {
         animation: sacrifice-pulse 0.8s ease-in-out infinite;
       }
 
+      @keyframes accelerate-pulse {
+        0%, 100% { transform: scale(1); opacity: 0.78; }
+        50% { transform: scale(1.04); opacity: 1; }
+      }
+
+      .animate-accelerate-pulse {
+        animation: accelerate-pulse 0.45s ease-in-out infinite;
+      }
+
       .letter-spacing-widest { letter-spacing: 0.3em; }
       .letter-spacing-extreme { letter-spacing: 0.5em; }
     `}</style>

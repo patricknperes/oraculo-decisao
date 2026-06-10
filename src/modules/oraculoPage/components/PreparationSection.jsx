@@ -240,8 +240,19 @@ function OptionInput({
               value={inputOpcao}
               onChange={(event) => setInputOpcao(event.target.value)}
               placeholder="Inserir variável..."
-              className="w-full pl-12 pr-6 py-4 bg-zinc-950 border border-zinc-800 focus:border-white focus:outline-none text-zinc-200 placeholder-zinc-600 text-sm sm:text-base font-light tracking-wide transition-all"
+              className="w-full pl-12 pr-12 py-4 bg-zinc-950 border border-zinc-800 focus:border-white focus:outline-none text-zinc-200 placeholder-zinc-600 text-sm sm:text-base font-light tracking-wide transition-all"
             />
+
+            {inputOpcao && (
+              <button
+                type="button"
+                onClick={() => setInputOpcao("")}
+                aria-label="Limpar campo"
+                className="absolute right-2.5 top-1/2 flex h-7 w-7 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full text-zinc-600 opacity-75 transition-all hover:bg-zinc-900/70 hover:text-zinc-300 hover:opacity-100 active:scale-95"
+              >
+                <i className="ri-close-line text-sm" />
+              </button>
+            )}
           </div>
 
           <button
