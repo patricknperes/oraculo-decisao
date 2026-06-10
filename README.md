@@ -175,6 +175,67 @@ Utilizado para animações e transições visuais, tornando a experiência de us
 
 ---
 
+---
+
+## Estrutura do Projeto
+
+A estrutura do projeto foi organizada de forma simples, separando os componentes reutilizáveis, as páginas principais da aplicação e os arquivos de configuração.
+
+```txt
+ORACULO-DECISAO/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── DecorativeBackground.jsx
+│   │   └── transitionWrapper.jsx
+│   │
+│   ├── modules/
+│   │   ├── homePage/
+│   │   │   └── homePage.jsx
+│   │   │
+│   │   ├── notFoundPage/
+│   │   │   └── notFoundPage.jsx
+│   │   │
+│   │   └── oraculoPage/
+│   │       └── oraculoPage.jsx
+│   │
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+│
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js
+```
+
+### Descrição das principais pastas e arquivos
+
+A pasta `public` armazena arquivos públicos utilizados pela aplicação, como imagens e outros recursos estáticos.
+
+A pasta `src` contém o código-fonte principal do projeto.
+
+Dentro de `src/components`, ficam os componentes reutilizáveis da interface, como o plano de fundo decorativo e o componente responsável pelas transições entre páginas.
+
+A pasta `src/modules` organiza as páginas principais da aplicação em módulos separados. Essa divisão facilita a manutenção do código e melhora a organização do projeto.
+
+O arquivo `App.jsx` é responsável por estruturar as rotas e a navegação principal da aplicação.
+
+O arquivo `main.jsx` é o ponto de entrada do React, responsável por renderizar a aplicação no navegador.
+
+O arquivo `index.css` contém os estilos globais da aplicação.
+
+Os arquivos `package.json` e `package-lock.json` armazenam as dependências e scripts do projeto.
+
+O arquivo `vite.config.js` contém as configurações do Vite, ferramenta utilizada para desenvolvimento e build da aplicação.
+
+O arquivo `eslint.config.js` contém as configurações de padronização e análise do código.
+
+---
+
 ## Como Baixar o Projeto
 
 Para clonar o repositório em sua máquina, utilize o comando:
