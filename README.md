@@ -1,203 +1,199 @@
-# 🔮 Oráculo de Decisão
+# Oráculo de Decisão
 
 <p align="center">
-  <strong>Uma aplicação web interativa para ajudar usuários a tomarem decisões de forma simples, divertida e visualmente envolvente.</strong>
+  <strong>Aplicação web interativa para auxiliar usuários em processos simples de tomada de decisão.</strong>
 </p>
 
 <p align="center">
-  Projeto desenvolvido para a disciplina de <strong>Interação Humano-Computador</strong>.
+  Projeto desenvolvido para a disciplina de <strong>Interação Humano-Computador</strong> da <strong>Universidade Federal de Ouro Preto</strong>.
 </p>
 
 ---
 
-## 📌 Sobre o Projeto
+## Sobre o Projeto
 
-O **Oráculo de Decisão** é uma aplicação web criada com o objetivo de auxiliar pessoas em situações de indecisão.
+O **Oráculo de Decisão** é uma aplicação web desenvolvida com o objetivo de auxiliar usuários em situações de indecisão, permitindo que diferentes opções sejam cadastradas e sorteadas pelo sistema.
 
-A proposta é simples: o usuário informa duas ou mais opções e o sistema escolhe uma delas de forma aleatória, utilizando lógica em **JavaScript**. A escolha é apresentada ao usuário com uma interface temática, inspirada em um oráculo místico.
+A proposta do projeto é transformar uma ação simples, como escolher entre alternativas, em uma experiência interativa, visualmente organizada e de fácil utilização. A aplicação foi construída considerando conceitos da disciplina de **Interação Humano-Computador**, como usabilidade, clareza visual, feedback ao usuário, responsividade e organização das informações na interface.
 
-A aplicação trabalha conceitos importantes de **Interação Humano-Computador**, como clareza visual, feedback ao usuário, responsividade, organização das informações e experiência de uso.
-
-Além da funcionalidade principal, o projeto também explora uma identidade visual própria, com fundo escuro, elementos decorativos, animações, gradientes e uma estética voltada para o tema de mistério e decisão.
+O sistema permite que o usuário cadastre opções manualmente, importe dados por meio de arquivo CSV ou realize sorteios utilizando imagens. A partir das opções cadastradas, o oráculo realiza a escolha de forma aleatória.
 
 ---
 
-## 🌐 Projeto Hospedado
+## Projeto Hospedado
 
-O santuário está de portas abertas. Você pode consultar o Oráculo de Decisão diretamente através do seu navegador e deixar que o destino guie as suas escolhas, sem precisar instalar nada no seu computador.
+A aplicação está disponível para acesso online, sem necessidade de instalação local.
 
-🔗 **Acessar o Oráculo:** [Clique aqui para abrir o projeto](https://oraculo-decisao.netlify.app/)
-
----
-
-## 🎯 Objetivo
-
-O objetivo do projeto é desenvolver uma interface web criativa, intuitiva e responsiva, permitindo que o usuário interaja com o sistema de forma simples e agradável.
-
-A aplicação busca transformar uma ação comum, como escolher entre duas ou mais opções, em uma experiência mais divertida e visualmente interessante.
+**Acessar o projeto:** [Clique aqui para abrir o Oráculo de Decisão](https://oraculo-decisao.netlify.app/)
 
 ---
 
-## 📚 Disciplina
+## Objetivo
+
+O objetivo do projeto é desenvolver uma aplicação web criativa, simples e responsiva, capaz de auxiliar o usuário na escolha entre duas ou mais opções.
+
+Além da funcionalidade principal de sorteio, o projeto busca aplicar princípios de Interação Humano-Computador para oferecer uma experiência de uso clara, intuitiva e agradável.
+
+---
+
+## Disciplina
 
 Projeto desenvolvido para a disciplina:
 
 **Interação Humano-Computador**
 
-A proposta do trabalho está relacionada à criação de uma aplicação com foco em usabilidade, experiência do usuário e construção de uma interface visualmente organizada.
+Instituição:
+
+**Universidade Federal de Ouro Preto — UFOP**
 
 ---
 
-## 👥 Autores
+## Integrantes
 
-| Nome | Matrícula |
-|---|---|
-| Patrick Peres Nicolini | 22.1.8103 |
+| Nome                              | Matrícula |
+| --------------------------------- | --------- |
+| Patrick Peres Nicolini            | 22.1.8103 |
 | Carlos Gabriel de Oliveira Frazão | 22.1.8100 |
 
 ---
 
-## ✨ Funcionalidades
+## Funcionamento da Aplicação
 
-### 🎲 Sorteio de decisões
+O sistema permite que o usuário cadastre opções e solicite ao oráculo a realização de um sorteio. A escolha é feita de forma aleatória, utilizando lógica implementada em JavaScript.
 
-O usuário pode inserir duas ou mais opções, e o sistema escolhe uma delas de forma aleatória.
+A aplicação possui dois modos principais de funcionamento:
+
+### Modo Normal
+
+No **Modo Normal**, o usuário informa as opções desejadas e o sistema realiza um sorteio padrão, escolhendo uma delas aleatoriamente.
+
+Esse modo é indicado para decisões rápidas, em que o usuário deseja apenas obter uma escolha entre as alternativas cadastradas.
 
 Exemplo:
 
 ```txt
-Pizza ou Hambúrguer?
+Opções informadas:
+- Pizza
+- Hambúrguer
+- Sushi
+
+Resultado:
+O oráculo escolheu: Hambúrguer
 ```
 
-Resultado possível:
+---
+
+### Modo Sacrifício
+
+No **Modo Sacrifício**, o sistema realiza uma eliminação progressiva das opções cadastradas.
+
+Nesse modo, as opções são removidas uma por uma, de forma aleatória, até que reste apenas uma alternativa final. A última opção restante é apresentada como a decisão do oráculo.
+
+Esse modo torna o processo de escolha mais dinâmico e visual, permitindo acompanhar a eliminação gradual das alternativas.
+
+Exemplo:
 
 ```txt
-O oráculo escolheu: Pizza 🍕
+Opções informadas:
+- Ana
+- Bruno
+- Carlos
+- Daniel
+
+Eliminações:
+- Carlos foi eliminado
+- Ana foi eliminada
+- Daniel foi eliminado
+
+Resultado final:
+O oráculo escolheu: Bruno
 ```
 
 ---
 
-### 🔀 Escolha aleatória com JavaScript
+## Formas de Sorteio
 
-A lógica principal do sistema utiliza recursos do JavaScript para sortear uma opção cadastrada pelo usuário.
+A aplicação permite realizar sorteios de diferentes formas, ampliando as possibilidades de uso do sistema.
 
-A escolha é feita com base em um índice aleatório gerado a partir da quantidade de opções disponíveis.
+### Sorteio com nomes ou textos
 
----
-
-### 🌌 Interface temática
-
-A aplicação possui uma identidade visual inspirada em elementos místicos, utilizando:
-
-- Fundo escuro;
-- Gradientes;
-- Runas decorativas;
-- Efeitos de brilho;
-- Animações suaves;
-- Elementos com transparência;
-- Layout moderno e responsivo.
+O usuário pode digitar manualmente as opções que deseja sortear, como nomes, atividades, lugares, comidas ou qualquer outro tipo de informação textual.
 
 ---
 
-### 📱 Layout responsivo
+### Sorteio com arquivo CSV
 
-O sistema foi pensado para funcionar bem em diferentes tamanhos de tela, como notebooks, desktops e dispositivos móveis.
+O sistema permite importar opções por meio de um arquivo CSV, facilitando o uso quando há uma grande quantidade de dados.
 
----
-
-### 🚫 Página Not Found personalizada
-
-O projeto também possui uma página de erro personalizada para rotas inexistentes, mantendo a identidade visual do sistema.
+Essa funcionalidade é útil para listas de nomes, participantes, itens ou qualquer conjunto de informações organizadas em arquivo.
 
 ---
 
-## 🖼️ Protótipos
+### Sorteio com imagens
 
-Nesta seção estão os caminhos reservados para os protótipos do projeto.
+Além de textos e arquivos CSV, a aplicação também permite realizar sorteios utilizando imagens.
 
-### 🏠 Página Principal
-
-Protótipo referente à tela inicial do sistema, onde o usuário tem o primeiro contato com a proposta do projeto.
-
-![Protótipo - Página Principal](public/images/homePage.png)
+Nesse caso, o usuário pode cadastrar imagens como opções, e o sistema realiza o sorteio entre elas. Essa funcionalidade torna a experiência mais visual e interativa.
 
 ---
 
-### 🔮 Página do Oráculo
+## Funcionalidades
 
-Protótipo referente à tela principal de interação, onde o usuário informa as opções e recebe a decisão sorteada pelo sistema.
+A aplicação possui as seguintes funcionalidades principais:
 
-![Protótipo - Página do Oráculo](public/images/oraculoPage.png)
-
----
-
-### 🚫 Página Not Found
-
-Protótipo referente à página exibida quando o usuário acessa uma rota inexistente.
-
-![Protótipo - Página Not Found](public/images/notFoundPage.png)
+* Cadastro manual de opções para sorteio;
+* Sorteio aleatório no modo normal;
+* Sorteio por eliminação no modo sacrifício;
+* Importação de dados por arquivo CSV;
+* Sorteio utilizando imagens;
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
-O projeto utiliza as seguintes tecnologias:
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-### ⚛️ React
+### React
 
-Utilizado para a construção da interface por meio de componentes reutilizáveis.
+Utilizado para a construção da interface da aplicação por meio de componentes reutilizáveis.
 
----
+### Vite
 
-### ⚡ Vite
+Utilizado como ferramenta de desenvolvimento front-end, oferecendo um ambiente rápido para criação, execução e build do projeto.
 
-Utilizado como ferramenta de criação e execução do projeto front-end, oferecendo um ambiente rápido e simples para desenvolvimento.
+### JavaScript
 
----
+Utilizado na lógica principal da aplicação, incluindo o funcionamento dos sorteios aleatórios e da eliminação progressiva no modo sacrifício.
 
-### 🟨 JavaScript
+### Tailwind CSS
 
-Utilizado para a lógica da aplicação, incluindo o funcionamento do sorteio aleatório.
+Utilizado para a estilização da interface, contribuindo para a criação de layouts responsivos e visualmente organizados.
 
----
+### Framer Motion
 
-### 🎨 Tailwind CSS
-
-Utilizado para a estilização da interface, permitindo criar layouts responsivos e modernos de forma mais prática.
+Utilizado para animações e transições visuais, tornando a experiência de uso mais fluida e interativa.
 
 ---
 
-### 🎞️ Framer Motion
+## Como Baixar o Projeto
 
-Utilizado ou previsto para animações e transições visuais, deixando a experiência do usuário mais fluida e interativa.
-
----
-
-## 🚀 Como Baixar o Projeto
-
-Para baixar o repositório em sua máquina, utilize o comando:
+Para clonar o repositório em sua máquina, utilize o comando:
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/patricknperes/oraculo-decisao.git
 ```
 
 Depois, acesse a pasta do projeto:
 
 ```bash
-cd nome-do-repositorio
-```
-
-Exemplo:
-
-```bash
-cd oraculo-de-decisao
+cd oraculo-decisao
 ```
 
 ---
 
-## ⚙️ Como Rodar o Projeto
+## Como Rodar o Projeto
 
-Como o projeto utiliza o **Vite**, a execução segue o padrão de projetos criados com essa ferramenta.
+Como o projeto utiliza o Vite, a execução segue o padrão de projetos front-end criados com essa ferramenta.
 
 Primeiro, instale as dependências:
 
@@ -219,41 +215,3 @@ http://localhost:5173
 
 Acesse esse endereço no navegador para visualizar a aplicação.
 
----
-
-## 🧪 Como Usar
-
-1. Acesse a aplicação pelo navegador.
-2. Informe duas ou mais opções.
-3. Solicite a decisão ao oráculo.
-4. O sistema sorteará uma das opções.
-5. O resultado será exibido na tela com destaque visual.
-
----
-
-## 💡 Exemplo de Funcionamento
-
-```txt
-Opções informadas:
-- Pizza
-- Hambúrguer
-- Sushi
-
-Resultado:
-O oráculo escolheu: Hambúrguer 🍔
-```
----
-
-## ✅ Considerações Finais
-
-O **Oráculo de Decisão** é um projeto acadêmico que une programação, criatividade e conceitos de Interação Humano-Computador.
-
-Mesmo possuindo uma lógica simples, a aplicação demonstra como uma boa interface pode tornar uma funcionalidade comum mais interessante, acessível e agradável para o usuário.
-
-O projeto reforça a importância de pensar não apenas no funcionamento técnico de um sistema, mas também na forma como o usuário interage, entende e se sente ao utilizar a aplicação.
-
----
-
-## 📄 Licença
-
-Este projeto foi desenvolvido exclusivamente para fins acadêmicos.
