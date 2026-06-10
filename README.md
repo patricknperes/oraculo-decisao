@@ -179,9 +179,9 @@ Utilizado para animações e transições visuais, tornando a experiência de us
 
 ## Estrutura do Projeto
 
-A estrutura do projeto foi organizada de forma simples, separando os componentes reutilizáveis, as páginas principais da aplicação e os arquivos de configuração.
+A estrutura do projeto foi organizada de forma modular, separando os componentes reutilizáveis, as páginas principais da aplicação e os arquivos específicos de cada módulo.
 
-```txt
+```txt id="5q9j83"
 ORACULO-DECISAO/
 ├── public/
 ├── src/
@@ -197,7 +197,12 @@ ORACULO-DECISAO/
 │   │   │   └── notFoundPage.jsx
 │   │   │
 │   │   └── oraculoPage/
-│   │       └── oraculoPage.jsx
+│   │       ├── components/
+│   │       │   ├── OraculoStyles.jsx
+│   │       │   ├── PreparationSection.jsx
+│   │       │   └── RitualSection.jsx
+│   │       │
+│   │       └── OraculoPage.jsx
 │   │
 │   ├── App.jsx
 │   ├── index.css
@@ -218,21 +223,34 @@ A pasta `public` armazena arquivos públicos utilizados pela aplicação, como i
 
 A pasta `src` contém o código-fonte principal do projeto.
 
-Dentro de `src/components`, ficam os componentes reutilizáveis da interface, como o plano de fundo decorativo e o componente responsável pelas transições entre páginas.
+Dentro de `src/components`, ficam os componentes globais e reutilizáveis da aplicação, como o plano de fundo decorativo e o componente responsável pelas transições entre páginas.
 
-A pasta `src/modules` organiza as páginas principais da aplicação em módulos separados. Essa divisão facilita a manutenção do código e melhora a organização do projeto.
+A pasta `src/modules` organiza as páginas principais da aplicação em módulos separados. Essa divisão facilita a manutenção, a leitura do código e a separação das responsabilidades de cada tela.
 
-O arquivo `App.jsx` é responsável por estruturar as rotas e a navegação principal da aplicação.
+O módulo `homePage` contém a página inicial da aplicação.
+
+O módulo `notFoundPage` contém a página exibida quando o usuário acessa uma rota inexistente.
+
+O módulo `oraculoPage` contém a página principal do sistema, responsável pela interação com o oráculo e pela realização dos sorteios.
+
+Dentro de `src/modules/oraculoPage/components`, ficam os componentes específicos da página do oráculo:
+
+* `OraculoStyles.jsx`: concentra estruturas e estilos utilizados na página do oráculo;
+* `PreparationSection.jsx`: representa a seção inicial de preparação, onde o usuário configura ou informa os dados para o sorteio;
+* `RitualSection.jsx`: representa a seção do ritual, onde ocorre a execução do sorteio e a apresentação do resultado.
+
+O arquivo `App.jsx` é responsável pela organização das rotas e pela estrutura principal da aplicação.
 
 O arquivo `main.jsx` é o ponto de entrada do React, responsável por renderizar a aplicação no navegador.
 
 O arquivo `index.css` contém os estilos globais da aplicação.
 
-Os arquivos `package.json` e `package-lock.json` armazenam as dependências e scripts do projeto.
+Os arquivos `package.json` e `package-lock.json` armazenam as dependências, versões e scripts do projeto.
 
 O arquivo `vite.config.js` contém as configurações do Vite, ferramenta utilizada para desenvolvimento e build da aplicação.
 
 O arquivo `eslint.config.js` contém as configurações de padronização e análise do código.
+
 
 ---
 
