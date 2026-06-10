@@ -96,7 +96,7 @@ export default function HomePage() {
           <div className="h-[1px] w-12 bg-zinc-800" />
 
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-zinc-400 text-xs tracking-widest uppercase font-medium">
-            <span>Patrick Perez Nicolini</span>
+            <span>Patrick Peres Nicolini</span>
 
             <span className="hidden md:inline text-red-900/50">|</span>
 
